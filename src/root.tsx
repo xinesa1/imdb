@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import Topnav from "./features/topnav/Topnav";
 import styles from "./tailwind.css";
 
 export const links: LinksFunction = () => [
@@ -37,7 +38,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <header>
+          <Topnav />
+        </header>
+        <main>
+          <Outlet />
+        </main>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
