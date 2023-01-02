@@ -18,7 +18,7 @@ const Film: React.FC = () => {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <div className="max-w-[1024px] mx-auto py-4 relative">
+    <div className="max-w-[1280px] mx-auto py-4 relative px-2">
       <img
         src={`https://image.tmdb.org/t/p/w1920_and_h600_multi_faces${data.backdrop_path}`}
         alt={data.title}
