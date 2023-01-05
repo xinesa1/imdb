@@ -47,20 +47,20 @@ const Actor: React.FC = () => {
           <h3 className="text-3xl mb-4">Kariyer</h3>
           <ul>
             {data.movie_credits?.cast?.map((cast, i) => (
-              <Link key={i} to={`/film/${cast.id}`}>
-                <li>
+              <li key={i} className="w-fit">
+                <Link to={`/film/${cast.id}`}>
                   {cast.character}
                   <sub>({cast.title})</sub>
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}
             {data.tv_credits?.cast?.map((cast, i) => (
-              <Link key={i} to={`/dizi/${cast.id}`}>
-                <li>
+              <li key={i} className="w-fit">
+                <Link to={`/dizi/${cast.id}`}>
                   {cast.character}
                   <sub>({cast.name})</sub>
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}
           </ul>
         </section>
