@@ -9,7 +9,8 @@ type Props = {
 const Collection: React.FC<Props> = ({ collectionName, cards }) => {
   return (
     <div className="w-full border-black">
-      <p className="text-2xl">{collectionName}</p>
+      <h2 className="text-2xl">{collectionName}</h2>
+      <hr />
       <div className="flex gap-4 overflow-x-auto snap-x scrollbar pb-2">
         {cards.map((card, i) => (
           <Card key={i} img={card.img} link={card.link} text={card.text} />
