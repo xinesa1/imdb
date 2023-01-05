@@ -34,7 +34,7 @@ const TvShow: React.FC = () => {
         <Star weight="fill" />
         {data.vote_average?.toFixed(1)}
       </span>
-      <div className="flex flex-col gap-24 my-6">
+      <div className="flex flex-col gap-12 sm:gap-24 my-6">
         <div>
           <h1 className="text-center text-4xl font-bold tracking-tighter drop-shadow underline">
             {data.name}
@@ -67,11 +67,9 @@ const TvShow: React.FC = () => {
             .map((video, i) => (
               <iframe
                 key={i}
-                width={1920 * 0.3}
-                height={1080 * 0.3}
                 title={video.name}
                 src={`https://youtube.com/embed/${video.key}`}
-                className="inline-block shrink-0"
+                className="inline-block aspect-video"
               />
             ))}
         </div>

@@ -3,6 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { z } from "zod";
 import tmdb from "~/tmdb.server";
 import { Star } from "phosphor-react";
+import type { MovieImagesResponse, MovieResponse } from "moviedb-promise";
 
 export async function loader({ params }: LoaderArgs) {
   const { id } = await z
@@ -10,7 +11,10 @@ export async function loader({ params }: LoaderArgs) {
       id: z.string(),
     })
     .parseAsync(params);
-  const movie = await tmdb.movieInfo({ id });
+  const movie = (await tmdb.movieInfo({
+    id,
+    append_to_response: "images",
+  })) as MovieResponse & { images: MovieImagesResponse };
   return movie;
 }
 
@@ -30,12 +34,21 @@ const Film: React.FC = () => {
         <Star weight="fill" />
         {data.vote_average?.toFixed(1)}
       </span>
-      <div className="flex flex-col gap-6 my-6">
+      <div className="flex flex-col gap-12 sm:gap-24 my-6">
         <div>
           <h1 className="text-center text-4xl font-bold tracking-tighter drop-shadow underline">
             {data.title}
           </h1>
           <p className="mt-6">{data.overview}</p>
+        </div>
+        <div className="flex gap-3 overflow-x-auto snap-x scrollbar pb-2">
+          {data.images.backdrops?.map((img, i) => (
+            <img
+              key={i}
+              alt={data.title}
+              src={`https://image.tmdb.org/t/p/w533_and_h300_multi_faces${img.file_path}`}
+            />
+          ))}
         </div>
       </div>
     </div>

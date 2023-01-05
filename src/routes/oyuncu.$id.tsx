@@ -41,10 +41,10 @@ const Actor: React.FC = () => {
           {data.name}
         </figcaption>
       </figure>
-      <div className="flex flex-col gap-24 my-6">
+      <div className="flex flex-col gap-12 sm:gap-24 my-6">
         <p>{data.biography}</p>
         <section>
-          <h3 className="text-3xl mb-4">Cast</h3>
+          <h3 className="text-3xl mb-4">Kariyer</h3>
           <ul>
             {data.movie_credits?.cast?.map((cast, i) => (
               <Link key={i} to={`/film/${cast.id}`}>
