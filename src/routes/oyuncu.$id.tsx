@@ -1,5 +1,10 @@
 import type { LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
+import type {
+  Person,
+  PersonMovieCreditsResponse,
+  PersonTvCreditsResponse,
+} from "moviedb-promise";
 import { z } from "zod";
 import tmdb from "~/tmdb.server";
 
@@ -9,9 +14,13 @@ export async function loader({ params }: LoaderArgs) {
       id: z.string(),
     })
     .parseAsync(params);
-  const actor = await tmdb.personInfo({
+  const actor = (await tmdb.personInfo({
     id,
-  });
+    append_to_response: "movie_credits,tv_credits",
+  })) as Person & {
+    movie_credits: PersonMovieCreditsResponse;
+    tv_credits: PersonTvCreditsResponse;
+  };
   return actor;
 }
 
@@ -32,8 +41,29 @@ const Actor: React.FC = () => {
           {data.name}
         </figcaption>
       </figure>
-      <div className="mt-4">
+      <div className="flex flex-col gap-24 my-6">
         <p>{data.biography}</p>
+        <section>
+          <h3 className="text-3xl mb-4">Cast</h3>
+          <ul>
+            {data.movie_credits?.cast?.map((cast, i) => (
+              <Link key={i} to={`/film/${cast.id}`}>
+                <li>
+                  {cast.character}
+                  <sub>({cast.title})</sub>
+                </li>
+              </Link>
+            ))}
+            {data.tv_credits?.cast?.map((cast, i) => (
+              <Link key={i} to={`/dizi/${cast.id}`}>
+                <li>
+                  {cast.character}
+                  <sub>({cast.name})</sub>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        </section>
       </div>
     </div>
   );
