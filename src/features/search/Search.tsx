@@ -65,7 +65,7 @@ const Search: React.FC<Props> = ({ className }) => {
         />
       </fetcher.Form>
       {show && (
-        <div className="border flex flex-col absolute mt-2 bg-white rounded top-auto w-screen h-screen left-0 sm:mt-auto sm:left-auto sm:w-auto sm:h-auto">
+        <div className="z-20 border flex flex-col absolute mt-2 bg-white rounded top-auto w-screen h-screen left-0 sm:mt-auto sm:left-auto sm:w-auto sm:h-auto">
           {fetcher.data?.map((item, i) => (
             <Link
               key={i}
