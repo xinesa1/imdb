@@ -31,10 +31,12 @@ const Film: React.FC = () => {
         {data.vote_average?.toFixed(1)}
       </span>
       <div className="flex flex-col gap-6 my-6">
-        <h1 className="text-center text-4xl font-bold tracking-tighter drop-shadow underline">
-          {data.title}
-        </h1>
-        <p>{data.overview}</p>
+        <div>
+          <h1 className="text-center text-4xl font-bold tracking-tighter drop-shadow underline">
+            {data.title}
+          </h1>
+          <p className="mt-6">{data.overview}</p>
+        </div>
       </div>
     </div>
   );
