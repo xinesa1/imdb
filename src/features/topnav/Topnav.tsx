@@ -10,9 +10,7 @@ const Topnav: React.FC = () => {
       <Search className="border border-black rounded" />
       <span className="ml-auto" />
      
-      <Link className="hidden sm:inline-block" to="//github.com/turkerdev">
-        <p>GitHub</p>
-      </Link>
+     
     </nav>
   );
 };
