@@ -9,9 +9,7 @@ const Topnav: React.FC = () => {
       </Link>
       <Search className="border border-black rounded" />
       <span className="ml-auto" />
-      <Link className="hidden sm:inline-block" to="/about">
-        <p>Hakkında</p>
-      </Link>
+     
       <Link className="hidden sm:inline-block" to="//github.com/turkerdev">
         <p>GitHub</p>
       </Link>
